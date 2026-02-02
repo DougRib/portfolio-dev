@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Mail, Github, Linkedin, Send, Download, Eye, FileText, X, Code2, MessageSquare, User, MessageCircle } from 'lucide-react';
-import AnimatedCard from './AnimatedCard';
-import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
+import { Mail, Send } from 'lucide-react';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 
 const contactMethods = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'kalpsenghani0601@gmail.com',
-    href: 'mailto:kalpsenghani0601@gmail.com',
+    value: 'douglas21pro@gmail.com',
+    href: 'mailto:douglas21pro@gmail.com',
     bg: 'bg-blue-700',
     iconColor: 'text-white',
   },
   {
-    icon: Github,
+    icon: IconBrandGithub,
     label: 'GitHub',
-    value: 'github.com/kalpsenghani',
-    href: 'https://github.com/kalpsenghani',
+    value: 'github.com/DougRib',
+    href: 'https://github.com/DougRib',
     bg: 'bg-gray-700',
     iconColor: 'text-white',
   },
   {
-    icon: Linkedin,
+    icon: IconBrandLinkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/kalpsenghani',
-    href: 'https://linkedin.com/in/kalpsenghani',
+    value: 'linkedin.com/in/douglasribeiro21',
+    href: 'https://linkedin.com/in/douglasribeiro21',
     bg: 'bg-blue-800',
     iconColor: 'text-white',
   },
@@ -87,7 +83,7 @@ const codingPlatforms = [
 const DeveloperStats = () => (
   <Card className="glowing-card bg-gray-900/70 border-gray-800 rounded-xl transition-all duration-300 overflow-hidden h-full flex flex-col justify-center">
     <CardHeader>
-  <CardTitle className="text-3xl font-bold text-white mb-2">Estatísticas do desenvolvedor</CardTitle>
+    <CardTitle className="text-3xl font-bold text-white mb-2">Estatísticas do desenvolvedor</CardTitle>
       <p className="text-gray-400 text-sm">Conquistas e métricas em tempo real</p>
     </CardHeader>
     <CardContent>
@@ -106,7 +102,7 @@ const DeveloperStats = () => (
           <div className="text-xs text-gray-300">Certificações</div>
         </div>
         <div className="bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-lg p-4 border border-orange-500/30">
-          <div className="text-2xl font-bold text-orange-400 mb-1">3+</div>
+          <div className="text-2xl font-bold text-orange-400 mb-1">1+</div>
           <div className="text-xs text-gray-300">Anos de experiência</div>
         </div>
       </div>
@@ -117,7 +113,11 @@ const DeveloperStats = () => (
         <div className="flex justify-center">
           <div id="SocailIcons" className="relative">
             {/* Instagram */}
-            <a href="https://instagram.com/kalpsenghani" target="_blank" rel="noopener noreferrer" className="icons instaIcon group">
+            <a 
+              href="https://instagram.com/odev.douglas" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="icons instaIcon group">
               <span className="iconName">Instagram</span>
               <div className="icon insta">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -127,7 +127,11 @@ const DeveloperStats = () => (
             </a>
 
             {/* LinkedIn */}
-            <a href="https://linkedin.com/in/kalpsenghani" target="_blank" rel="noopener noreferrer" className="icons linkedin group">
+            <a 
+              href="https://linkedin.com/in/douglasribeiro21" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="icons linkedin group">
               <span className="iconName">LinkedIn</span>
               <div className="icon link">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -310,8 +314,8 @@ const ContactForm = () => {
               onClick={() => setFormData(prev => ({ ...prev, collaborationType: 'Freelance' }))}
               className={`flex-1 py-3 px-4 rounded-lg border transition-all duration-300 ${
                 formData.collaborationType === 'Freelance'
-                  ? 'bg-purple-600 border-purple-500 text-white'
-                  : 'bg-transparent border-gray-600 text-gray-300 hover:border-purple-500 hover:text-white'
+                  ? 'bg-green-600 border-green-500 text-white'
+                  : 'bg-transparent border-gray-600 text-gray-300 hover:border-green-500 hover:text-white'
               }`}
             >
               Freelance
@@ -321,8 +325,8 @@ const ContactForm = () => {
               onClick={() => setFormData(prev => ({ ...prev, collaborationType: 'project' }))}
               className={`flex-1 py-3 px-4 rounded-lg border transition-all duration-300 ${
                 formData.collaborationType === 'project'
-                  ? 'bg-purple-600 border-purple-500 text-white'
-                  : 'bg-transparent border-gray-600 text-gray-300 hover:border-purple-500 hover:text-white'
+                  ? 'bg-blue-600 border-blue-500 text-white'
+                  : 'bg-transparent border-gray-600 text-gray-200 hover:border-blue-500 hover:text-white'
               }`}
             >
               Projeto
@@ -344,7 +348,7 @@ const ContactForm = () => {
         
           {submitStatus.type && (
             <div className={`p-4 rounded-lg ${
-              submitStatus.type === 'success' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'
+              submitStatus.type === 'success' ? 'bg-green-500/40 text-green-300' : 'bg-red-500/40 text-red-300'
             }`}>
               {submitStatus.message}
             </div>

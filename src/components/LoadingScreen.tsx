@@ -26,7 +26,7 @@ const LoadingScreen: React.FC = () => {
       </div>
       
       {/* Loading Text */}
-      <div className="absolute bottom-32 text-white text-lg font-medium">
+      <div className="absolute bottom-32 text-cyan-400 text-lg font-medium">
         Carregando...
       </div>
     </div>

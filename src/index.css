@@ -581,6 +581,20 @@
     opacity: 0.85;
   }
 
+  .form-container {
+    @apply relative overflow-hidden;
+  }
+  
+  .form-container::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-xl opacity-0 transition-opacity duration-300 blur-xl;
+    z-index: -1;
+  }
+  
+  .form-container:hover::before {
+    @apply opacity-15;
+  }
+
   .form-container button:active {
     scale: 0.95;
   }
@@ -600,7 +614,7 @@
   .form-container .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #717171;
+    color: #E7ECEF;
     font-weight: 600;
     font-size: 12px;
   }
@@ -816,7 +830,7 @@
     color: #717171;
     font-weight: 600;
     width: 40%;
-    background: #313131;
+    background: #9FF6FF;
     border: 1px solid #414141;
     padding: 12px 16px;
     font-size: inherit;
@@ -824,13 +838,15 @@
     margin-top: 8px;
     cursor: pointer;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
   }
 
   .form-container .form-submit-btn:hover {
-    background-color: #fff;
-    border-color: #fff;
-    color: #000;
+    background-color: #009999;
+    border-color: #009999;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 153, 153, 0.6);
+    transform: scale(1.02);
   }
 
   /* Beautiful 3D Card UI - Purple Theme */
@@ -1081,12 +1097,17 @@
     transform: translate3d(0, 0, 125px);
   }
 
-  /* Glowing Purple Contact Button */
+  /* Glowing Cyan Contact Button */
   .glow-button {
-    --glow-color: rgb(180, 140, 220);
-    --glow-spread-color: rgba(150, 100, 200, 0.5);
-    --enhanced-glow-color: rgb(200, 170, 230);
-    --btn-color: rgb(80, 50, 110);
+    /* Um ciano puro e vibrante */
+    --glow-color: rgb(0, 255, 242); 
+    /* Brilho suave com opacidade baixa */
+    --glow-spread-color: rgba(0, 255, 242, 0.4);
+    /* Um ciano mais claro, quase branco, para o efeito 'enhanced' */
+    --enhanced-glow-color: rgb(176, 240, 245);
+    /* O segredo: um azul petróleo bem escuro para contrastar */
+    --btn-color: rgb(0, 30, 35);
+    
     border: .15em solid var(--glow-color);
     padding: 0.6em 1.5em;
     color: var(--glow-color);
@@ -1096,8 +1117,8 @@
     border-radius: 0.8em;
     outline: none;
     box-shadow: 0 0 0.6em .1em var(--glow-color),
-            0 0 2em 0.6em var(--glow-spread-color),
-            inset 0 0 .4em .1em var(--glow-color);
+                0 0 2em 0.6em var(--glow-spread-color),
+                inset 0 0 .4em .1em var(--glow-color);
     text-shadow: 0 0 .3em var(--glow-color);
     position: relative;
     transition: all 0.3s;

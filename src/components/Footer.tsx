@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Code2, Heart, ArrowUp, Atom, FileCode, Palette, Zap } from 'lucide-react';
 
 const Footer = () => {
@@ -19,11 +19,12 @@ const Footer = () => {
   };
 
   const techStack = [
-    { icon: Atom, label: "React" },
-    { icon: FileCode, label: "TypeScript" },
-    { icon: Palette, label: "Tailwind" },
-    { icon: Zap, label: "Vite" },
-  ];
+  { image: "/icons-footer/react.svg", label: "React" },
+  { image: "/icons-footer/ts.svg", label: "TypeScript" },
+  { image: "/icons-footer/tailwindcss.svg", label: "Tailwind" },
+  { image: "/icons-footer/vite-dark.svg", label: "Vite" },
+];
+
   
   return (
     <footer className="relative">
@@ -39,10 +40,10 @@ const Footer = () => {
                 className="h-10 w-10"
               />
               <div>
-                <p className="text-gray-400 text-sm">
-                  © {currentYear} Kalp Senghani. Todos os direitos reservados.
+                <p className="text-gray-300 text-sm">
+                  © {currentYear} Douglas Ribeiro. Todos os direitos reservados.
                 </p>
-                <p className="text-gray-500 text-xs mt-1">
+                <p className="text-gray-400 text-md mt-1">
                   Feito com <Heart className="inline w-3 h-3 text-red-500" /> e <Code2 className="inline w-3 h-3 text-blue-500" />
                 </p>
               </div>
@@ -56,7 +57,7 @@ const Footer = () => {
                   className="p-2 rounded-full bg-gray-800/50 hover:bg-gray-800/80 text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
                   title={tech.label}
                 >
-                  <tech.icon className="w-5 h-5" />
+                  <img src={tech.image} alt={tech.label} className="w-5 h-5" />
                 </div>
               ))}
             </div>
@@ -68,10 +69,10 @@ const Footer = () => {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 p-3 rounded-full bg-gray-800/80 hover:bg-gray-800 text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
+          className="fixed bottom-6 right-6 p-3 rounded-full border border-cyan-800 hover:border-cyan-600 hover:shadow-cyan-500/20 bg-gray-800/80 hover:bg-gray-800 text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
           aria-label="Voltar ao topo"
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-5 h-5 " />
         </button>
       )}
     </footer>
