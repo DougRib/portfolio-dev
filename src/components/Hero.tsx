@@ -18,7 +18,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-36">
+    <section id="hero" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-36">
       <div className="container mx-auto px-6 z-10 relative">
         <div className="max-w-6xl mx-auto text-center px-4">
           <motion.h1
@@ -139,13 +139,13 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            className="mt-16 flex justify-center"
+            className="mt-16 flex justify-center "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            <div className="animate-bounce p-2 bg-blue-900/30 rounded-full border border-blue-500/20">
-              <a href="#technologies" className="text-blue-400">
+            <div className="animate-bounce p-2 bg-blue-900/30 rounded-full border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] transition-all ">
+              <a href="#about" className="text-blue-400">
                 <svg
                   className="w-6 h-6"
                   fill="none"

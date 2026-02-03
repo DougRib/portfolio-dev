@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   User,
@@ -14,6 +14,7 @@ import {
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,11 +30,48 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { href: "#hero", label: "Início", icon: <House className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { href: "#technologies", label: "Habilidades", icon: <Brain className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { href: "#about", label: "Sobre mim", icon: <User className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { href: "#projects", label: "Projetos", icon: <Code2 className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "hero", href: "#hero", label: "Início", icon: <House className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "technologies", href: "#technologies", label: "Habilidades", icon: <Brain className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "about", href: "#about", label: "Sobre mim", icon: <User className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "projects", href: "#projects", label: "Projetos", icon: <Code2 className="w-5 h-5 mr-1 text-cyan-400" /> },
   ];
+
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      const offset = 140;
+      const contactEl = document.getElementById("contact");
+      if (contactEl) {
+        const contactTop = contactEl.getBoundingClientRect().top + window.scrollY;
+        const contactBottom = contactTop + contactEl.offsetHeight;
+        const pos = window.scrollY + offset;
+        if (pos >= contactTop && pos < contactBottom) {
+          setActiveSection("");
+          return;
+        }
+      }
+      const current =
+        navItems
+          .map((item) => {
+            const el = document.getElementById(item.id);
+            if (!el) return null;
+            return { id: item.id, top: el.getBoundingClientRect().top + window.scrollY };
+          })
+          .filter(Boolean)
+          .sort((a, b) => a!.top - b!.top)
+          .reduce((acc, section) => {
+            if (section!.top <= window.scrollY + offset) {
+              return section!.id;
+            }
+            return acc;
+          }, "hero") || "hero";
+
+      setActiveSection(current);
+    };
+
+    handleScrollSpy();
+    window.addEventListener("scroll", handleScrollSpy);
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, [navItems]);
 
   return (
     <nav
@@ -47,7 +85,7 @@ const Navbar = () => {
         <div className="flex items-center h-full">
           {/* Logo with glowing effect */}
           <a
-            href="#"
+            href="#hero"
             className="relative group flex items-center justify-center"
           >
             {/* Full logo glow effect */}
@@ -67,7 +105,11 @@ const Navbar = () => {
             <div className="flex px-8 py-2 bg-gray-900/30 backdrop-blur-md rounded-full border border-white/10 shadow-xl">
               <div className="flex space-x-8 items-center justify-center">
                 {navItems.map((item) => (
-                  <IslandNavLink key={item.href} href={item.href}>
+                  <IslandNavLink
+                    key={item.href}
+                    href={item.href}
+                    active={activeSection === item.id}
+                  >
                     {item.icon}
                     {item.label}
                   </IslandNavLink>
@@ -115,6 +157,7 @@ const Navbar = () => {
               <MobileNavLink
                 key={item.href}
                 href={item.href}
+                active={activeSection === item.id}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.icon}
@@ -138,18 +181,32 @@ const Navbar = () => {
 const IslandNavLink = ({
   href,
   children,
+  active = false,
 }: {
   href: string;
   children: React.ReactNode;
+  active?: boolean;
 }) => {
   return (
     <a
       href={href}
-      className="relative px-3 py-2 text-gray-300 hover:text-white transition-all duration-300 group flex items-center"
+      className={`relative px-3 py-2 transition-all duration-300 group flex items-center ${
+        active ? "text-white" : "text-gray-300 hover:text-white"
+      }`}
     >
       <span className="relative z-10 flex items-center">{children}</span>
-      <span className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 opacity-0 group-hover:opacity-100 rounded-full blur-sm transition-all duration-300"></span>
-      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
+      <span
+        className={`absolute inset-1 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 rounded-full blur-sm transition-all duration-300 ${
+          active
+            ? "from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-100"
+            : "opacity-0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 group-hover:opacity-100"
+        }`}
+      ></span>
+      <span
+        className={`absolute bottom-1 left-2 right-2 h-0.5 bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 transition-all duration-300 origin-center ${
+          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+        }`}
+      ></span>
     </a>
   );
 };
@@ -157,16 +214,20 @@ const IslandNavLink = ({
 const MobileNavLink = ({
   href,
   children,
+  active = false,
   onClick,
 }: {
   href: string;
   children: React.ReactNode;
+  active?: boolean;
   onClick: () => void;
 }) => (
   <a
     href={href}
     onClick={onClick}
-    className="text-gray-300 hover:text-white py-2 px-4 hover:bg-gray-800 rounded-md transition-colors flex items-center"
+    className={`py-2 px-4 rounded-md transition-colors flex items-center ${
+      active ? "text-white bg-gray-800" : "text-gray-300 hover:text-white hover:bg-gray-800"
+    }`}
   >
     {children}
   </a>

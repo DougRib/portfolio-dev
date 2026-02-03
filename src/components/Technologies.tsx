@@ -45,10 +45,13 @@ const techGroups = [
   {
     label: 'DevOps e cloud',
     items: [
+      { name: 'Vite', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg', docs: 'https://vitejs.dev/guide/' },
       { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', docs: 'https://docs.docker.com/' },
       { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', docs: 'https://git-scm.com/doc' },
       { name: 'Vercel', icon: 'https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png', docs: 'https://vercel.com/docs' },
       { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg', docs: 'https://www.kernel.org/doc/html/latest/' },
+      { name: 'Windows', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg', docs: 'https://docs.microsoft.com/en-us/windows/' },
+      { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', docs: 'https://docs.github.com/en' },
       { name: 'Vscode', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg', docs: 'https://code.visualstudio.com/docs' },
     ],
   },
@@ -92,19 +95,26 @@ const Technologies = () => {
         viewport={{ once: true }}
         className="text-center mb-10"
       >
-        <h2 className="section-title">
-          Tecnologias com as quais trabalho
+        <h2 className="section-title mb-2">
+          Tecnologias & Ferramentas
         </h2>
         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
           Ferramentas e frameworks de ponta para construir o futuro
         </p>
       </motion.div>
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {techGroups.map((group) => (
-          <div key={group.label} className="flex flex-col items-center h-full">
-            <h3 className="text-xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
-              {group.label}
-            </h3>
+          <div
+            key={group.label}
+            className="flex flex-col items-center h-full rounded-2xl border border-blue-500/20 bg-black/30 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.35)] p-6 hover:border-blue-400 transition-all duration-200"
+          >
+            <div className="mb-4 flex items-center gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-300 uppercase tracking-wider shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-blue-400" />
+                {group.label}
+              </span>
+            </div>
+            <div className="h-0.5 w-14 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6" />
             <motion.div
               className="grid grid-cols-2 gap-6"
               variants={containerVariants}

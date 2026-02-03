@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Code2, Heart, ArrowUp, Atom, FileCode, Palette, Zap } from 'lucide-react';
+import { Code2, Heart, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,7 +41,7 @@ const Footer = () => {
               />
               <div>
                 <p className="text-gray-300 text-sm">
-                  © {currentYear} Douglas Ribeiro. Todos os direitos reservados.
+                  &copy; {currentYear} Douglas Ribeiro. Todos os direitos reservados.
                 </p>
                 <p className="text-gray-400 text-md mt-1">
                   Feito com <Heart className="inline w-3 h-3 text-red-500" /> e <Code2 className="inline w-3 h-3 text-blue-500" />

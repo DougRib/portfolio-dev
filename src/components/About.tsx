@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface TimelineItem {
@@ -12,120 +12,100 @@ interface TimelineItem {
 const timelineData: TimelineItem[] = [
   {
     id: 1,
-    year: "Abril 2025 – Presente",
-    title: "SaaS de Analytics do YouTube – Dashboard avançado de inteligência para criadores",
-    description: `Arquitetarei e lançarei uma plataforma SaaS escalável para criadores do YouTube, com meta de 10.000+ usuários concorrentes e APIs de alta disponibilidade. Integrarei a YouTube Data API v3 para entregar análises em tempo real e insights acionáveis com latência abaixo de 200 ms. Habilitarei deployments modulares e containerizados e dashboards interativos, visando aumento de 40%+ no engajamento e controle de acesso robusto em múltiplos níveis.`,
+    year: "Competência principal",
+    title: "Desenvolvimento Full Stack",
+    description:
+      "Desenvolvimento de aplicações web completas com React, Next.js e Tailwind CSS no front-end, integrando APIs em Python, Node.js e bancos de dados SQL e NoSQL para soluções escaláveis e seguras.",
     type: "experience"
   },
   {
     id: 2,
-    year: "Abr. 2023 – Abr. 2025",
-    title: "Especialista de Suporte em TI, George Brown College, Toronto, ON",
-    description: `Prestei suporte de Nível 1/2 para 1.000+ alunos e colaboradores, mantendo sistemas Windows/macOS e dispositivos em rede no campus. Alcancei 95% de satisfação ao resolver problemas técnicos complexos e automatizar verificações de saúde, reduzindo em 30% o tempo de indisponibilidade de impressoras. Gerenciei inventário de ativos, distribuição de software e documentação de TI para otimizar a eficiência do fluxo de trabalho.`,
+    year: "Foco técnico",
+    title: "Análise de Dados",
+    description:
+      "Análise, visualização e geração de relatórios com Python, Pandas, NumPy, Matplotlib e Seaborn, transformando dados em insights práticos para apoiar decisões.",
     type: "experience"
   },
   {
     id: 3,
-    year: "2022 - 2025",
-    title: "Diploma Avançado em Programação e Análise de Computadores, George Brown College",
-    description: "Foco em desenvolvimento full stack, IA, computação em nuvem e desenvolvimento mobile. Criei vários projetos acadêmicos e pessoais usando tecnologias modernas.",
+    year: "Crescimento contínuo",
+    title: "Projetos e Aprendizado Contínuo",
+    description:
+      "Evoluo por meio de projetos pessoais e estudos constantes em tecnologia e dados. Buscando sempre novas habilidades para aprimorar minhas soluções.",
     type: "education"
+  },
+  {
+    id: 4,
+    year: "2026",
+    title: "Soft Skills e Certificações",
+    description:
+      "Desenvolvimento de habilidades interpessoais como comunicação, trabalho em equipe, resolução de problemas, raciocínio analítico, complementadas por certificações em Desenvolvimento Full Stack e Análise de Dados.",
+    type: "award"
   }
 ];
 
 const About = () => {
+  const [showAllCerts, setShowAllCerts] = useState(false);
+  const certifications = [
+    "Ciência da Computação – Universidade UniRitter (Em andamento, previsão de conclusão 2029).",
+    "Formação Python Backend Developer - Digital Innovation One (2026).",
+    "Engenharia de Prompt - Digital Innovation One (2026).",
+    "Curso de Inglês (Em andamento) - Digital Innovation One (2026).",
+    "Formação Full Stack Python – EBAC (2025).",
+    "Inteligência Artificial aplicada a Dados com Copilot - Digital Innovation One (2025).",
+    "SQL (Básico e Avançado) – Digital Innovation One (2025).",
+    "Banco de Dados Oracle – Udemy (2025).",
+    "Git e GitHub – Digital Innovation One (2025).",
+    "Arquitetura de Redes – Udemy (2025).",
+  ];
+  const visibleCertifications = showAllCerts
+    ? certifications
+    : certifications.slice(0, 4);
+
   return (
     <section id="about" className="section-container">
       <h2 className="section-title">Sobre mim</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Tech Stack & Skills */}
-        <div className="lg:col-span-1">
-          <Card className="h-full glass-card rounded-xl border-muted">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-6 bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Arsenal técnico</h3>
-              
-              {/* Skill Categories */}
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-sm font-semibold text-blue-400 mb-3">Domínio de front-end</h4>
-                  <div className="space-y-2">
-                    {['React', 'Next.js', 'TypeScript', 'Tailwind CSS'].map((skill, index) => (
-                      <div key={skill} className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">{skill}</span>
-                        <div className="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-full transition-all duration-1000 ease-out"
-                            style={{ 
-                              width: `${85 + (index * 3)}%`,
-                              animationDelay: `${index * 200}ms`
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                  <div>
-                  <h4 className="text-sm font-semibold text-blue-400 mb-3">Especialidade em back-end</h4>
-                  <div className="space-y-2">
-                    {['Node.js', 'Python', 'Java', 'GraphQL'].map((skill, index) => (
-                      <div key={skill} className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">{skill}</span>
-                        <div className="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full transition-all duration-1000 ease-out"
-                            style={{ 
-                              width: `${80 + (index * 4)}%`,
-                              animationDelay: `${(index + 4) * 200}ms`
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                  <div>
-                  <h4 className="text-sm font-semibold text-blue-400 mb-3">IA e cloud</h4>
-                  <div className="space-y-2">
-                    {['OpenAI GPT-4', 'AWS', 'Docker', 'MongoDB'].map((skill, index) => (
-                      <div key={skill} className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">{skill}</span>
-                        <div className="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full transition-all duration-1000 ease-out"
-                            style={{ 
-                              width: `${75 + (index * 5)}%`,
-                              animationDelay: `${(index + 8) * 200}ms`
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
+        <div className="lg:col-span-1 group">
+          <Card className="h-full glass-card rounded-xl border-muted group-hover:border-blue-400 transition-all duration-200 shadow-xl">
+            <CardContent className="p-6 h-full flex flex-col">
+              <h3 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Perfil profissional
+              </h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Sou estudante de Ciência da Computação com foco em Desenvolvimento Web Full Stack e Análise de Dados com Python.
+                Tenho experiência na criação de interfaces modernas e intuitivas, utilizando Typescript, React, Next.js e Tailwind CSS, além de
+                ferramentas de análise como Pandas e Matplotlib para transformar dados em insights.
+              </p>
+              <p className="text-sm text-gray-300 leading-relaxed mt-4">
+                Minha trajetória começou pela curiosidade em entender como as aplicações funcionam e evoluiu para a paixão em construir
+                soluções web funcionais, eficientes e centradas no usuário, unindo engenharia sólida e tomada de decisão orientada a dados.
+              </p>
               <div className="mt-8 pt-6 border-t border-gray-700">
-                <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Certificações</h3>
+                <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                  Certificações e cursos
+                </h3>
                 <div className="flex flex-col gap-3">
-                  <a href="https://www.coursera.org/account/accomplishments/specialization/LI5Q0UI157UD?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg bg-black/30 border border-blue-500/20 hover:bg-blue-900/20 transition group">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google Data Analytics" className="w-6 h-6 group-hover:scale-110 transition" />
-                    <div>
-                      <div className="font-semibold text-blue-400 text-sm">Google Data Analytics</div>
-                      <div className="text-xs text-muted-foreground">Certificado Profissional</div>
+                  {visibleCertifications.map((course) => (
+                    <div
+                      key={course}
+                      className="p-3 rounded-lg bg-black/30 border border-blue-500/20 text-sm text-gray-300 hover:border-blue-300 transition-all duration-200 shadow-xl"
+                    >
+                      {course}
                     </div>
-                  </a>
-                  <a href="https://www.credly.com/badges/6366a28e-790a-4f83-9825-308fd4b1ed07/public_url" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg bg-black/30 border border-blue-500/20 hover:bg-blue-900/20 transition group">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ibm/ibm-original.svg" alt="IBM Data Science" className="w-6 h-6 group-hover:scale-110 transition" />
-                    <div>
-                      <div className="font-semibold text-blue-400 text-sm">IBM Data Science</div>
-                      <div className="text-xs text-muted-foreground">Certificado Profissional</div>
-                  </div>
-                </a>
+                  ))}
                 </div>
+                {certifications.length > 4 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowAllCerts((prev) => !prev)}
+                    className="mt-4 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    {showAllCerts ? "Ver menos" : "Ver todas as certificações"}
+                  </button>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -139,7 +119,7 @@ const About = () => {
             <div className="space-y-16">
               {timelineData.map((item, idx) => (
                 <div key={item.id} className="relative pl-16 flex items-start group">
-                  <div className="absolute left-0 top-1 w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center rounded-full border-4 border-background z-10 shadow-lg group-hover:scale-110 transition">
+                  <div className="absolute left-0 top-1 w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center rounded-full border-4 border-background z-10 shadow-lg group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] transition">
                     {item.type === 'education' ? (
                       <GraduationIcon />
                     ) : item.type === 'experience' ? (
@@ -148,7 +128,7 @@ const About = () => {
                       <AwardIcon />
                     )}
                   </div>
-                  <Card className="glass-card rounded-xl border-muted shadow-xl group-hover:border-blue-400 transition-all w-full">
+                  <Card className="glass-card rounded-xl border-muted shadow-xl group-hover:border-blue-400 transition-all duration-200 w-full">
                     <CardContent className="p-6">
                       <div className="text-sm font-medium text-muted-foreground mb-1">
                         {item.year}

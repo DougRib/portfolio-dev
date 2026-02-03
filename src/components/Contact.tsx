@@ -90,7 +90,7 @@ const DeveloperStats = () => (
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-4 mb-8">
         <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg p-4 border border-blue-500/30">
-          <div className="text-2xl font-bold text-blue-400 mb-1">15+</div>
+          <div className="text-2xl font-bold text-blue-400 mb-1">2+</div>
           <div className="text-xs text-gray-300">Projetos entregues</div>
         </div>
         <div className="bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-lg p-4 border border-green-500/30">
@@ -198,7 +198,7 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate collaboration type selection
@@ -213,43 +213,28 @@ const ContactForm = () => {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: '82927390-3cc2-4ef8-8ce2-2249f91f37cc',
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          collaborationType: formData.collaborationType,
-          message: formData.message,
-          subject: 'Nova submissão do formulário de contato'
-        })
-      });
+    const subject = "Nova submissão do formulário de contato";
+    const body = [
+      `Nome: ${formData.firstName} ${formData.lastName}`.trim(),
+      `Email: ${formData.email}`,
+      `Tipo de colaboração: ${formData.collaborationType}`,
+      "",
+      "Mensagem:",
+      formData.message,
+    ].join("\n");
 
-      const data = await response.json();
+    const mailto = `mailto:douglas21pro@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
 
-      if (data.success) {
-        setSubmitStatus({
-          type: 'success',
-          message: 'Obrigado pela sua mensagem! Responderei em breve.'
-        });
-        setFormData({ firstName: '', lastName: '', email: '', collaborationType: '', message: '' });
-      } else {
-        throw new Error(data.message || 'Algo deu errado');
-      }
-    } catch (error) {
-      setSubmitStatus({
-        type: 'error',
-        message: 'Falha ao enviar a mensagem. Tente novamente mais tarde.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.location.href = mailto;
+
+    setSubmitStatus({
+      type: "success",
+      message: "Seu cliente de email foi aberto para enviar a mensagem."
+    });
+    setFormData({ firstName: "", lastName: "", email: "", collaborationType: "", message: "" });
+    setIsSubmitting(false);
   };
 
   return (

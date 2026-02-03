@@ -1,4 +1,3 @@
-import React from 'react';
 import FeaturesSectionDemo from '@/components/ui/features-section-demo-2';
 
 const Features = () => {

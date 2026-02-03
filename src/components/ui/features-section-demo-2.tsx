@@ -7,16 +7,16 @@ export default function FeaturesSectionDemo() {
       description: "Criação de aplicações web completas com React, Node.js e TypeScript para soluções modernas e escaláveis.",
     },
     {
-      title: "IA e aprendizado de máquina",
-      description: "Criação de aplicações com IA e fluxos de automação usando OpenAI, Python e técnicas avançadas de ML.",
+      title: "Análise de dados",
+      description: "Análise e visualização de dados e criação de dashboards interativos com ferramentas como Python, Numpy, Pandas, Matplotlib e Power BI.",
     },
     {
-      title: "Arquitetura em cloud",
-      description: "Projeto de soluções escaláveis em cloud com AWS, Docker e microserviços para aplicações de alto desempenho.",
+      title: "IA e aprendizado de máquina",
+      description: "Criação de aplicações com IA e fluxos de automação usando OpenAI, Python e técnicas de ML.",
     },
     {
       title: "Design de bancos de dados",
-      description: "Especialista em bancos SQL e NoSQL, modelagem de dados e construção de aplicações robustas orientadas a dados.",
+      description: "Bancos SQL e NoSQL, modelagem de dados e construção de aplicações robustas orientadas a dados.",
     },
     {
       title: "Design responsivo",
