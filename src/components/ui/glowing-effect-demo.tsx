@@ -3,6 +3,7 @@
 import React from "react";
 import { Box, Lock, Search, Settings, Sparkles, Github, ExternalLink } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Tech icon mapping (from Technologies.tsx)
 const techIconMap: Record<string, string> = {
@@ -125,9 +126,10 @@ const microProjectsData = [
 ].filter(project => project.title !== "AI Content Platform");
 
 export default function GlowingEffectDemo() {
+  const { tArray, t } = useLanguage();
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-      {microProjectsData.map((project, idx) => (
+      {tArray<Project>("microProjects.items").map((project, idx) => (
         <GridItem key={project.title} project={{
           ...project,
           image: project.image && project.image.startsWith('/') ? 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80' : project.image
@@ -211,7 +213,7 @@ const GridItem = ({ project }: GridItemProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-black/70 border border-white/20 hover:bg-gray-900 hover:border-blue-400 transition-colors"
-                title="Ver no GitHub"
+                title={t("misc.viewOnGithub")}
               >
                 <Github className="w-5 h-5 text-white" />
               </a>
@@ -222,7 +224,7 @@ const GridItem = ({ project }: GridItemProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-black/70 border border-white/20 hover:bg-gray-900 hover:border-blue-400 transition-colors"
-                title="Ver ao vivo"
+                title={t("misc.viewLive")}
               >
                 <ExternalLink className="w-5 h-5 text-white" />
               </a>

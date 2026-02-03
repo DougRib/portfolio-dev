@@ -1,6 +1,8 @@
 import React from 'react';
+import { useLanguage } from "@/context/LanguageContext";
 
 const LoadingScreen: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
       {/* Dark Horizon Glow Background */}
@@ -27,7 +29,7 @@ const LoadingScreen: React.FC = () => {
       
       {/* Loading Text */}
       <div className="absolute bottom-32 text-cyan-400 text-lg font-medium">
-        Carregando...
+        {t("misc.loading")}
       </div>
     </div>
   );

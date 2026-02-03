@@ -4,6 +4,7 @@ import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { blogPosts } from "@/lib/blog-data";
 import ReactMarkdown from "react-markdown";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Random relatable photos for different categories
 const categoryPhotos = {
@@ -53,6 +54,7 @@ const BlogContent = ({ content }: { content: string }) => {
 };
 
 export default function AppleCardsCarouselDemo() {
+  const { t } = useLanguage();
   // Convert blog posts to carousel cards
   const cards = blogPosts.map((post, index) => {
     const category = post.tags[0] || "Development";
@@ -74,7 +76,7 @@ export default function AppleCardsCarouselDemo() {
 
   return (
     <div className="w-full h-full py-12">
-      <h2 className="section-title">Últimos artigos e insights</h2>
+      <h2 className="section-title">{t("misc.articlesTitle")}</h2>
       <Carousel items={cards} />
     </div>
   );

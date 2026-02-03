@@ -1,16 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from "@/context/LanguageContext";
 
 const techGroups = [
   {
-    label: 'Linguagens',
+    id: 'languages',
     items: [
       { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', docs: 'https://www.typescriptlang.org/docs/' },
       { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', docs: 'https://docs.python.org/3/' },
     ],
   },
   {
-    label: 'Front-end',
+    id: 'frontend',
     items: [
       { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', docs: 'https://react.dev/' },
       { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', docs: 'https://nextjs.org/docs' },
@@ -22,7 +23,7 @@ const techGroups = [
     ],
   },
   {
-    label: 'Back-end',
+    id: 'backend',
     items: [
       { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', docs: 'https://nodejs.org/en/docs' },
       { name: 'Django', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg', docs: 'https://docs.djangoproject.com/' },
@@ -32,7 +33,7 @@ const techGroups = [
     ],
   },
   {
-    label: 'Banco de dados',
+    id: 'database',
     items: [
       { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', docs: 'https://www.mongodb.com/docs/' },
       { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', docs: 'https://www.postgresql.org/docs/' },
@@ -43,7 +44,7 @@ const techGroups = [
     ],
   },
   {
-    label: 'DevOps e cloud',
+    id: 'devops',
     items: [
       { name: 'Vite', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg', docs: 'https://vitejs.dev/guide/' },
       { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', docs: 'https://docs.docker.com/' },
@@ -80,6 +81,7 @@ const itemVariants = {
 };
 
 const Technologies = () => {
+  const { t } = useLanguage();
   const [imageErrors, setImageErrors] = React.useState<Record<string, boolean>>({});
 
   const handleImageError = (techName: string) => {
@@ -96,22 +98,22 @@ const Technologies = () => {
         className="text-center mb-10"
       >
         <h2 className="section-title mb-2">
-          Tecnologias & Ferramentas
+          {t("technologies.title")}
         </h2>
         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-          Ferramentas e frameworks de ponta para construir o futuro
+          {t("technologies.subtitle")}
         </p>
       </motion.div>
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {techGroups.map((group) => (
           <div
-            key={group.label}
+            key={group.id}
             className="flex flex-col items-center h-full rounded-2xl border border-blue-500/20 bg-black/30 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.35)] p-6 hover:border-blue-400 transition-all duration-200"
           >
             <div className="mb-4 flex items-center gap-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-300 uppercase tracking-wider shadow-sm">
                 <span className="h-2 w-2 rounded-full bg-blue-400" />
-                {group.label}
+                {t(`technologies.groups.${group.id}`)}
               </span>
             </div>
             <div className="h-0.5 w-14 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6" />

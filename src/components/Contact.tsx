@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Send } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
+import { useLanguage } from "@/context/LanguageContext";
 
 const contactMethods = [
   {
@@ -80,36 +81,40 @@ const codingPlatforms = [
   },
 ];
 
-const DeveloperStats = () => (
-  <Card className="glowing-card bg-gray-900/70 border-gray-800 rounded-xl transition-all duration-300 overflow-hidden h-full flex flex-col justify-center">
-    <CardHeader>
-    <CardTitle className="text-3xl font-bold text-white mb-2">Estatísticas do desenvolvedor</CardTitle>
-      <p className="text-gray-400 text-sm">Conquistas e métricas em tempo real</p>
-    </CardHeader>
-    <CardContent>
+const DeveloperStats = () => {
+  const { t } = useLanguage();
+  return (
+    <Card className="glowing-card bg-gray-900/70 border-gray-800 rounded-xl transition-all duration-300 overflow-hidden h-full flex flex-col justify-center">
+      <CardHeader>
+        <CardTitle className="text-3xl font-bold text-white mb-2">
+          {t("contact.statsTitle")}
+        </CardTitle>
+        <p className="text-gray-400 text-sm">{t("contact.statsSubtitle")}</p>
+      </CardHeader>
+      <CardContent>
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-4 mb-8">
         <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg p-4 border border-blue-500/30">
           <div className="text-2xl font-bold text-blue-400 mb-1">2+</div>
-          <div className="text-xs text-gray-300">Projetos entregues</div>
+          <div className="text-xs text-gray-300">{t("contact.statsLabels.projects")}</div>
         </div>
         <div className="bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-lg p-4 border border-green-500/30">
           <div className="text-2xl font-bold text-green-400 mb-1">6</div>
-          <div className="text-xs text-gray-300">Tecnologias</div>
+          <div className="text-xs text-gray-300">{t("contact.statsLabels.technologies")}</div>
         </div>
         <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg p-4 border border-purple-500/30">
           <div className="text-2xl font-bold text-purple-400 mb-1">2</div>
-          <div className="text-xs text-gray-300">Certificações</div>
+          <div className="text-xs text-gray-300">{t("contact.statsLabels.certifications")}</div>
         </div>
         <div className="bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-lg p-4 border border-orange-500/30">
           <div className="text-2xl font-bold text-orange-400 mb-1">1+</div>
-          <div className="text-xs text-gray-300">Anos de experiência</div>
+          <div className="text-xs text-gray-300">{t("contact.statsLabels.years")}</div>
         </div>
       </div>
 
       {/* Social Icons */}
       <div className="mb-6">
-        <h4 className="text-lg font-semibold text-white mb-4 text-center">Conecte-se comigo</h4>
+        <h4 className="text-lg font-semibold text-white mb-4 text-center">{t("contact.connectTitle")}</h4>
         <div className="flex justify-center">
           <div id="SocailIcons" className="relative">
             {/* Instagram */}
@@ -155,7 +160,7 @@ const DeveloperStats = () => (
 
       {/* Coding Platforms */}
       <div className="border-t border-gray-700 pt-4">
-        <h4 className="text-sm font-semibold text-gray-300 mb-3">Plataformas de programação</h4>
+        <h4 className="text-sm font-semibold text-gray-300 mb-3">{t("contact.platformsTitle")}</h4>
         <div className="flex gap-3">
         {codingPlatforms.map((platform) => (
           <a
@@ -172,11 +177,13 @@ const DeveloperStats = () => (
         ))}
         </div>
             </div>
-    </CardContent>
-  </Card>
-);
+      </CardContent>
+    </Card>
+  );
+};
 
 const ContactForm = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -205,7 +212,7 @@ const ContactForm = () => {
     if (!formData.collaborationType) {
       setSubmitStatus({
         type: 'error',
-        message: 'Selecione um tipo de colaboração.'
+        message: t("contact.validation")
       });
       return;
     }
@@ -213,7 +220,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
-    const subject = "Nova submissão do formulário de contato";
+    const subject = t("contact.submit");
     const body = [
       `Nome: ${formData.firstName} ${formData.lastName}`.trim(),
       `Email: ${formData.email}`,
@@ -231,7 +238,7 @@ const ContactForm = () => {
 
     setSubmitStatus({
       type: "success",
-      message: "Seu cliente de email foi aberto para enviar a mensagem."
+      message: t("contact.mailClientOpened")
     });
     setFormData({ firstName: "", lastName: "", email: "", collaborationType: "", message: "" });
     setIsSubmitting(false);
@@ -239,49 +246,49 @@ const ContactForm = () => {
 
   return (
     <div className="form-container">
-      <h2 className="text-2xl font-bold text-white mb-4">Vamos conversar</h2>
+      <h2 className="text-2xl font-bold text-white mb-4">{t("contact.formTitle")}</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="flex gap-4">
           <div className="form-group flex-1">
-            <label htmlFor="firstName">Nome</label>
+            <label htmlFor="firstName">{t("contact.labels.firstName")}</label>
             <input 
               id="firstName"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              placeholder="Nome"
+              placeholder={t("contact.placeholders.firstName")}
               required
             />
           </div>
           
           <div className="form-group flex-1">
-            <label htmlFor="lastName">Sobrenome</label>
+            <label htmlFor="lastName">{t("contact.labels.lastName")}</label>
             <input 
               id="lastName"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              placeholder="Sobrenome"
+              placeholder={t("contact.placeholders.lastName")}
               required
             />
           </div>
         </div>
         
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t("contact.labels.email")}</label>
           <input 
               id="email"
               name="email"
               type="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Seu email"
+              placeholder={t("contact.placeholders.email")}
               required
             />
           </div>
         
         <div className="form-group">
-          <label>Tipo de colaboração</label>
+          <label>{t("contact.labels.collaborationType")}</label>
           <div className="flex gap-3 mt-2">
             <button
               type="button"
@@ -292,7 +299,7 @@ const ContactForm = () => {
                   : 'bg-transparent border-gray-600 text-gray-300 hover:border-purple-500 hover:text-white'
               }`}
             >
-              Colaboração
+              {t("contact.collaboration.collaboration")}
             </button>
             <button
               type="button"
@@ -303,7 +310,7 @@ const ContactForm = () => {
                   : 'bg-transparent border-gray-600 text-gray-300 hover:border-green-500 hover:text-white'
               }`}
             >
-              Freelance
+              {t("contact.collaboration.freelance")}
             </button>
             <button
               type="button"
@@ -314,19 +321,19 @@ const ContactForm = () => {
                   : 'bg-transparent border-gray-600 text-gray-200 hover:border-blue-500 hover:text-white'
               }`}
             >
-              Projeto
+              {t("contact.collaboration.project")}
             </button>
           </div>
         </div>
         
         <div className="form-group">
-          <label htmlFor="message">Mensagem</label>
+          <label htmlFor="message">{t("contact.labels.message")}</label>
           <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Sua mensagem"
+              placeholder={t("contact.placeholders.message")}
               required
             />
           </div>
@@ -344,7 +351,7 @@ const ContactForm = () => {
             disabled={isSubmitting}
           className="form-submit-btn"
           >
-          {isSubmitting ? 'Enviando...' : 'Enviar mensagem'} <Send size={16} />
+          {isSubmitting ? t("contact.sending") : t("contact.submit")} <Send size={16} />
         </button>
         </form>
     </div>
@@ -352,10 +359,11 @@ const ContactForm = () => {
 };
 
 const Contact = () => {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="section-container">
       <div className="text-center mb-12">
-        <h2 className="section-title">Vamos nos conectar</h2>
+        <h2 className="section-title">{t("contact.sectionTitle")}</h2>
           </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
         {/* Left: Developer Stats, Contact Methods, Coding Platforms */}

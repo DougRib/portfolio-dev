@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import { VortexBackground } from "@/components/ui/vortex-background";
 import LoadingScreen from "./components/LoadingScreen";
 import { useLoading } from "./hooks/useLoading";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const queryClient = new QueryClient();
 
@@ -51,9 +52,11 @@ const AppContent = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AppContent />
-    </TooltipProvider>
+    <LanguageProvider>
+      <TooltipProvider>
+        <AppContent />
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

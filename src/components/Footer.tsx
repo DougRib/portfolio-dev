@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Code2, Heart, ArrowUp } from 'lucide-react';
+import { useLanguage } from "@/context/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -35,16 +37,16 @@ const Footer = () => {
             {/* Left side - Logo and copyright */}
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
               <img 
-                src="/lovable-uploads/e9810342-de6a-4f13-9171-0077afe8c75a.png" 
-                alt="Kalp Logo" 
-                className="h-10 w-10"
+                src="/logo-dr.png" 
+                alt="DR Logo" 
+                className="h-10 w-12"
               />
               <div>
                 <p className="text-gray-300 text-sm">
-                  &copy; {currentYear} Douglas Ribeiro. Todos os direitos reservados.
+                  &copy; {currentYear} Douglas Ribeiro. {t("footer.rights")}
                 </p>
                 <p className="text-gray-400 text-md mt-1">
-                  Feito com <Heart className="inline w-3 h-3 text-red-500" /> e <Code2 className="inline w-3 h-3 text-blue-500" />
+                  {t("footer.builtWith")} <Heart className="inline w-3 h-3 text-red-500" /> e <Code2 className="inline w-3 h-3 text-blue-500" />
                 </p>
               </div>
             </div>
@@ -70,7 +72,7 @@ const Footer = () => {
         <button
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 p-3 rounded-full border border-cyan-800 hover:border-cyan-600 hover:shadow-cyan-500/20 bg-gray-800/80 hover:bg-gray-800 text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
-          aria-label="Voltar ao topo"
+          aria-label={t("footer.backToTop")}
         >
           <ArrowUp className="w-5 h-5 " />
         </button>

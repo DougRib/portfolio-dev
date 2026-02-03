@@ -8,8 +8,10 @@ import {
   IconBrandInstagram,
   IconBrandLinkedin,
 } from "@tabler/icons-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Hero = () => {
+  const { t, tArray } = useLanguage();
   const handleResumeDownload = () => {
     const link = document.createElement("a");
     link.href = "/Curriculo_Douglas_Ribeiro.pdf";
@@ -28,21 +30,21 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-              Olá, sou
+              {t("hero.greeting")}
               <span className="bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-cyan-500 via-red-500 to-cyan-500 text-transparent bg-clip-text">
                 {" "}
-                Douglas Ribeiro
+                {t("hero.name")}
               </span>
             </span>
             <span className="block mt-2">
               <span className="block bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-indigo-500 via-red-500 to-blue-500 text-transparent bg-clip-text">
-                Desenvolvedor Full Stack
+                {t("hero.role1")}
               </span>
               <span className="block bg-gradient-to-t from-red-500 via-green-500 to-purple-500 text-transparent bg-clip-text">
-                Analista de Dados
+                {t("hero.role2")}
               </span>
               <span className="block bg-gradient-to-r from-red-100 via-cyan-700 to-purple-500 text-transparent bg-clip-text">
-                Inteligência Artificial
+                {t("hero.role3")}
               </span>
             </span>
           </motion.h1>
@@ -53,14 +55,9 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <span className="block">Eu crio</span>
+            <span className="block">{t("hero.animatedLead")}</span>
             <AnimatedText
-              text={[
-                " Soluções full stack escaláveis ",
-                "Funcionalidades inteligentes e orientadas a dados",
-                "Arquitetura de sistemas escaláveis",
-                "Experiências de usuário com IA",
-              ]}
+              text={tArray<string>("hero.animatedItems")}
               className="text-blue-400 font-medium"
             />
           </motion.h2>
@@ -71,8 +68,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            Construindo software confiável, intuitivo e pronto para o futuro com
-            paixão por inovação.
+            {t("hero.description")}
           </motion.p>
 
           {/* Social Icons above buttons */}
@@ -125,7 +121,7 @@ const Hero = () => {
           >
             <a href="#projects" className="gradient-border-button">
               <LayoutGrid width={20} height={20} stroke="#ffffff" />
-              Meus Projetos
+              {t("hero.ctaWork")}
             </a>
             <div className="flex items-center gap-2">
               <button
@@ -133,7 +129,7 @@ const Hero = () => {
                 onClick={handleResumeDownload}
               >
                 <FileChartColumn width={20} height={20} stroke="#ffffff" />
-                Donwload Currículo
+                {t("hero.ctaResume")}
               </button>
             </div>
           </motion.div>

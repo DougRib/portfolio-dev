@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,12 +9,17 @@ import {
   Menu,
   X,
   House,
+  ChevronDown,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement | null>(null);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,12 +34,35 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!langMenuOpen) return;
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setLangMenuOpen(false);
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, [langMenuOpen]);
+
   const navItems = [
-    { id: "hero", href: "#hero", label: "Início", icon: <House className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { id: "technologies", href: "#technologies", label: "Habilidades", icon: <Brain className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { id: "about", href: "#about", label: "Sobre mim", icon: <User className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { id: "projects", href: "#projects", label: "Projetos", icon: <Code2 className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "hero", href: "#hero", label: t("navbar.home"), icon: <House className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "technologies", href: "#technologies", label: t("navbar.skills"), icon: <Brain className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "about", href: "#about", label: t("navbar.about"), icon: <User className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "projects", href: "#projects", label: t("navbar.projects"), icon: <Code2 className="w-5 h-5 mr-1 text-cyan-400" /> },
   ];
+
+  const languageOptions = [
+    { value: "pt-BR", label: t("navbar.languages.pt-BR") },
+    { value: "en", label: t("navbar.languages.en") },
+    { value: "es", label: t("navbar.languages.es") },
+    { value: "pt-PT", label: t("navbar.languages.pt-PT") },
+  ];
+
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value as "pt-BR" | "en" | "es" | "pt-PT");
+    setLangMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScrollSpy = () => {
@@ -93,9 +121,9 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 rounded-full blur-2xl  group-hover:opacity-10 transition-all duration-300"></div>
             </div>
             <img
-              src="/lovable-uploads/e9810342-de6a-4f13-9171-0077afe8c75a.png"
-              alt="Kalp Logo"
-              className="h-14 w-14 relative z-10"
+              src="/logo-dr.png"
+              alt="DR Logo"
+              className="h-10 w-12 relative z-10"
             />
           </a>
 
@@ -119,10 +147,48 @@ const Navbar = () => {
           </div>
 
           {/* Contact button (Hire Me removed) - Right side */}
-          <div className="hidden md:flex items-center gap-3 ml-auto">
+          <div className="hidden md:flex items-center gap-4 ml-auto">
+            <div className="relative" ref={langMenuRef}>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setLangMenuOpen((prev) => !prev);
+                }}
+                className="flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-gray-900/30 backdrop-blur-md text-sm text-gray-200 hover:text-white hover:border-blue-500/30 transition-all"
+                aria-haspopup="listbox"
+                aria-expanded={langMenuOpen}
+              >
+                <span className="uppercase text-xs font-semibold tracking-wider text-blue-300">
+                  {language}
+                </span>
+                <ChevronDown className="w-4 h-4 text-blue-300" />
+              </button>
+              {langMenuOpen && (
+                <div
+                  role="listbox"
+                  className="absolute right-0 mt-2 w-52 rounded-xl border border-blue-500/20 bg-gray-900/80 backdrop-blur-xl shadow-xl overflow-hidden z-50"
+                >
+                  {languageOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => handleLanguageChange(option.value)}
+                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                        language === option.value
+                          ? "bg-blue-500/10 text-blue-300"
+                          : "text-gray-200 hover:bg-white/5"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <a href="#contact" className="glow-button">
               <Mail className="w-4 h-4 mr-2" />
-              Contato
+              {t("navbar.contact")}
             </a>
           </div>
 
@@ -169,8 +235,29 @@ const Navbar = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <Mail className="w-4 h-4 mr-2 text-cyan-400" />
-              Contato
+              {t("navbar.contact")}
             </MobileNavLink>
+            <div className="pt-2 border-t border-gray-800">
+              <div className="px-4 text-xs uppercase tracking-wider text-gray-400 mb-2">
+                {t("navbar.language")}
+              </div>
+              <div className="flex flex-col gap-2">
+                {languageOptions.map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() => handleLanguageChange(option.value)}
+                    className={`text-left px-4 py-2 rounded-md text-sm transition-colors ${
+                      language === option.value
+                        ? "bg-blue-500/10 text-blue-300"
+                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
       )}

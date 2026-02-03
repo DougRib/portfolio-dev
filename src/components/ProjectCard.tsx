@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { IconBrandGithub } from "@tabler/icons-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface Project {
   id: number;
@@ -36,6 +37,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+  const { t } = useLanguage();
   // small icon map for common tech tags (grayscale/minimized)
   const techIconMap: Record<string, string> = {
     React: "",
@@ -89,7 +91,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
 
         {/* Status badge */}
         {project.statusGlow === "in-progress" && (
-          <div className="main-project-card__badge">Em andamento</div>
+          <div className="main-project-card__badge">{t("misc.inProgress")}</div>
         )}
 
         <CardHeader>
@@ -145,7 +147,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               {project.caseStudy.problem && (
                 <div>
                   <div className="text-xs text-blue-400 font-semibold">
-                    Problema
+                    {t("misc.problem")}
                   </div>
                   <div className="text-muted-foreground">
                     {project.caseStudy.problem}
@@ -155,7 +157,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               {project.caseStudy.solution && (
                 <div>
                   <div className="text-xs text-blue-400 font-semibold">
-                    Solução
+                    {t("misc.solution")}
                   </div>
                   <div className="text-muted-foreground">
                     {project.caseStudy.solution}
@@ -165,7 +167,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               {project.caseStudy.result && (
                 <div>
                   <div className="text-xs text-blue-400 font-semibold">
-                    Resultado
+                    {t("misc.result")}
                   </div>
                   <div className="text-muted-foreground">
                     {project.caseStudy.result}
@@ -191,7 +193,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {project.status ? project.status : "Demo ao vivo"}
+                {project.status ? project.status : t("misc.liveDemo")}
               </a>
             </Button>
           )}

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TimelineItem {
   id: number;
   year: string;
   title: string;
   description: string;
-  type: 'education' | 'experience' | 'award';
+  type: "education" | "experience" | "award";
 }
 
 const timelineData: TimelineItem[] = [
@@ -36,7 +37,7 @@ const timelineData: TimelineItem[] = [
   },
   {
     id: 4,
-    year: "2026",
+    year: "2025 em diante",
     title: "Soft Skills e Certificações",
     description:
       "Desenvolvimento de habilidades interpessoais como comunicação, trabalho em equipe, resolução de problemas, raciocínio analítico, complementadas por certificações em Desenvolvimento Full Stack e Análise de Dados.",
@@ -45,26 +46,25 @@ const timelineData: TimelineItem[] = [
 ];
 
 const About = () => {
+  const { t, tArray } = useLanguage();
   const [showAllCerts, setShowAllCerts] = useState(false);
-  const certifications = [
-    "Ciência da Computação – Universidade UniRitter (Em andamento, previsão de conclusão 2029).",
-    "Formação Python Backend Developer - Digital Innovation One (2026).",
-    "Engenharia de Prompt - Digital Innovation One (2026).",
-    "Curso de Inglês (Em andamento) - Digital Innovation One (2026).",
-    "Formação Full Stack Python – EBAC (2025).",
-    "Inteligência Artificial aplicada a Dados com Copilot - Digital Innovation One (2025).",
-    "SQL (Básico e Avançado) – Digital Innovation One (2025).",
-    "Banco de Dados Oracle – Udemy (2025).",
-    "Git e GitHub – Digital Innovation One (2025).",
-    "Arquitetura de Redes – Udemy (2025).",
-  ];
+  const certifications = tArray<string>("about.certifications");
   const visibleCertifications = showAllCerts
     ? certifications
     : certifications.slice(0, 4);
+  const timelineItems = tArray<{ badge: string; title: string; description: string }>(
+    "about.timeline"
+  ).map((item, index) => ({
+    id: index + 1,
+    type: index === 2 ? "education" : "experience",
+    year: item.badge,
+    title: item.title,
+    description: item.description,
+  }));
 
   return (
     <section id="about" className="section-container">
-      <h2 className="section-title">Sobre mim</h2>
+      <h2 className="section-title">{t("about.title")}</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Tech Stack & Skills */}
@@ -72,20 +72,17 @@ const About = () => {
           <Card className="h-full glass-card rounded-xl border-muted group-hover:border-blue-400 transition-all duration-200 shadow-xl">
             <CardContent className="p-6 h-full flex flex-col">
               <h3 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Perfil profissional
+                {t("about.profileTitle")}
               </h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Sou estudante de Ciência da Computação com foco em Desenvolvimento Web Full Stack e Análise de Dados com Python.
-                Tenho experiência na criação de interfaces modernas e intuitivas, utilizando Typescript, React, Next.js e Tailwind CSS, além de
-                ferramentas de análise como Pandas e Matplotlib para transformar dados em insights.
+                {t("about.profileP1")}
               </p>
               <p className="text-sm text-gray-300 leading-relaxed mt-4">
-                Minha trajetória começou pela curiosidade em entender como as aplicações funcionam e evoluiu para a paixão em construir
-                soluções web funcionais, eficientes e centradas no usuário, unindo engenharia sólida e tomada de decisão orientada a dados.
+                {t("about.profileP2")}
               </p>
               <div className="mt-8 pt-6 border-t border-gray-700">
                 <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                  Certificações e cursos
+                  {t("about.certificationsTitle")}
                 </h3>
                 <div className="flex flex-col gap-3">
                   {visibleCertifications.map((course) => (
@@ -117,7 +114,7 @@ const About = () => {
             <div className="absolute left-6 top-5 bottom-5 w-1 bg-gradient-to-b from-blue-400 to-purple-500 shadow-lg rounded-full"></div>
             
             <div className="space-y-16">
-              {timelineData.map((item, idx) => (
+              {timelineItems.map((item, idx) => (
                 <div key={item.id} className="relative pl-16 flex items-start group">
                   <div className="absolute left-0 top-1 w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center rounded-full border-4 border-background z-10 shadow-lg group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] transition">
                     {item.type === 'education' ? (
@@ -133,7 +130,9 @@ const About = () => {
                       <div className="text-sm font-medium text-muted-foreground mb-1">
                         {item.year}
                       </div>
-                      <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">{item.title}</h3>
+                      <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                        {item.title}
+                      </h3>
                       <p className="text-muted-foreground whitespace-pre-line">
                         {item.description}
                       </p>
