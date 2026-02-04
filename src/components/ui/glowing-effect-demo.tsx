@@ -153,6 +153,8 @@ interface GridItemProps {
 }
 
 const GridItem = ({ project }: GridItemProps) => {
+  const { t } = useLanguage();
+
   return (
     <li className="min-h-[16rem] list-none">
       <div className="micro-project-card">

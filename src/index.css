@@ -568,7 +568,6 @@
   /* Beautiful Contact Form Container */
   .form-container {
     width: 100%;
-    max-width: 500px;
     background: linear-gradient(#212121, #212121) padding-box,
                 linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
     border: 2px solid transparent;
@@ -824,32 +823,61 @@
     background: #25d366;
   }
 
+  /* Beautiful Submit Button */
   .form-container .form-submit-btn {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    align-self: flex-start;
-    font-family: inherit;
-    color: #717171;
+    position: relative;
+    padding: 16px 40px;
+    font-size: 16px;
     font-weight: 600;
-    width: 40%;
-    background: #9FF6FF;
-    border: 1px solid #414141;
-    padding: 12px 16px;
-    font-size: inherit;
-    gap: 8px;
-    margin-top: 8px;
+    color: #fff;
+    background: #000;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 14px;
     cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.1s ease;
+    overflow: visible;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .form-container .form-submit-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #8b5cf6, #ec4899, #8b5cf6);
+    background-size: 200% 200%;
+    border-radius: 14px;
+    z-index: -1;
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .form-container .form-submit-btn:hover::before {
+    opacity: 0.8;
   }
 
   .form-container .form-submit-btn:hover {
-    background-color: #009999;
-    border-color: #009999;
-    color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 153, 153, 0.6);
+    border-color: rgba(139, 92, 246, 0.8);
     transform: scale(1.02);
+    box-shadow: 
+      0 0 30px rgba(139, 92, 246, 0.4),
+      0 0 60px rgba(236, 72, 153, 0.2);
+  }
+
+  .form-container .form-submit-btn:active {
+    transform: scale(0.98);
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
   /* Beautiful 3D Card UI - Purple Theme */
@@ -1162,76 +1190,150 @@
   }
 
   /* Gradient Border Buttons */
-  .gradient-border-button {
-    position: relative;
-    width: 120px;
-    height: 42px;
-    background-color: #000;
-    display: flex;
-    align-items: center;
-    color: white;
-    flex-direction: row;
-    justify-content: center;
-    border: none;
-    padding: 6px 12px;
-    gap: 6px;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-  }
+  .hero-actions {
+  display: flex;
+  gap: 16px;
+}
 
-  .gradient-border-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    left: -3px;
-    top: -1px;
-    margin: auto;
-    width: 126px;
-    height: 50px;
-    border-radius: 8px;
-    background: linear-gradient(-45deg, #c41dff 0%, #2da3ff 100%);
-    z-index: -10;
-    pointer-events: none;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+/* Botão Primário hero: Gradiente Sólido e Elegante */
+.btn-holographic {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.4) 0%,
+    rgba(139, 92, 246, 0.4) 50%,
+    rgba(236, 72, 153, 0.3) 100%
+  );
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  background-clip: padding-box;
+}
 
-  .gradient-border-button::after {
-    content: "";
-    z-index: -1;
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(-45deg, #d400ff 0%, #00b8bb 100%);
-    transform: translate3d(0, 0, 0) scale(0.95);
-    filter: blur(15px);
-  }
+.btn-holographic::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    #06b6d4,
+    #8b5cf6,
+    #ec4899,
+    #06b6d4
+  );
+  background-size: 300% 300%;
+  border-radius: 14px;
+  z-index: -1;
+  animation: holographic 3s ease infinite;
+  opacity: 0.8;
+}
 
-  .gradient-border-button:hover::after {
-    filter: blur(30px);
-  }
+.btn-holographic::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  z-index: -1;
+  transition: background 0.3s ease;
+}
 
-  .gradient-border-button:hover::before {
-    transform: rotate(-180deg);
-  }
+.btn-holographic:hover::after {
+  background: rgba(0, 0, 0, 0.1);
+}
 
-  .gradient-border-button:active::before {
-    scale: 0.7;
-  }
+.btn-holographic:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+}
 
-  /* Download button - icon only */
-  .gradient-border-button.download-btn {
-    width: 42px;
-    height: 42px;
-    padding: 6px;
-    gap: 0;
-  }
+.btn-holographic:active {
+  transform: translateY(-1px);
+}
 
-  .gradient-border-button.download-btn::before {
-    width: 48px;
-    height: 48px;
+@keyframes holographic {
+  0%, 100% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Download button - icon only */
+.btn-neon {
+  position: relative;
+  padding: 10px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: transparent;
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.btn-neon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-neon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(96, 165, 250, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-neon:hover {
+  border-color: rgba(96, 165, 250, 1);
+  color: #60a5fa;
+  box-shadow: 
+    0 0 20px rgba(96, 165, 250, 0.5),
+    inset 0 0 20px rgba(96, 165, 250, 0.4);
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+.btn-neon:hover::after {
+  opacity: 1;
+}
+
+.btn-neon:active {
+  transform: scale(0.97);
+  box-shadow: 
+    0 0 10px rgba(96, 165, 250, 0.2),
+    inset 0 0 10px rgba(96, 165, 250, 0.15);
+}
 
   /* Micro Project Card Hover Effect */
   .micro-project-card {

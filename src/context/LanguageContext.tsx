@@ -27,7 +27,6 @@ const translations: Record<Language, Translations> = {
       name: "Douglas Ribeiro",
       role1: "Desenvolvedor Full Stack",
       role2: "Analista de Dados",
-      role3: "Inteligência Artificial.",
       animatedLead: "Eu crio",
       animatedItems: [
         " Soluções full stack escaláveis ",
@@ -267,7 +266,7 @@ const translations: Record<Language, Translations> = {
         years: "Anos de experiência",
       },
       connectTitle: "Conecte-se comigo",
-      platformsTitle: "Plataformas de programação",
+      platformsTitle: "Comunidade & Código",
       formTitle: "Vamos conversar",
       labels: {
         firstName: "Nome",
@@ -1018,7 +1017,7 @@ const translations: Record<Language, Translations> = {
     },
     microProjects: { items: [] },
     contact: {
-      sectionTitle: "Vamos conectar-nos",
+      sectionTitle: "Vamos nos conectar",
       statsTitle: "Estatísticas do programador",
       statsSubtitle: "Conquistas e métricas em tempo real",
       statsLabels: {
@@ -1027,7 +1026,7 @@ const translations: Record<Language, Translations> = {
         certifications: "Certificações",
         years: "Anos de experiência",
       },
-      connectTitle: "Conecta-te comigo",
+      connectTitle: "Conecte-se comigo",
       platformsTitle: "Plataformas de programação",
       formTitle: "Vamos conversar",
       labels: {
@@ -1049,11 +1048,11 @@ const translations: Record<Language, Translations> = {
         project: "Projeto",
       },
       submit: "Enviar mensagem",
-      sending: "A enviar...",
+      sending: "Enviando mensagem...",
       validation: "Seleciona um tipo de colaboração.",
       success: "Mensagem enviada com sucesso.",
-      error: "Falha ao enviar a mensagem. Tenta novamente mais tarde.",
-      mailClientOpened: "O teu cliente de email foi aberto para enviar a mensagem.",
+      error: "Falha ao enviar a mensagem. Tenta novamente.",
+      errorEmail: "Erro ao enviar. Tente novamente.",
     },
     footer: {
       rights: "Todos os direitos reservados.",

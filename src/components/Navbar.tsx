@@ -128,7 +128,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center flex-1 justify-center">
+          <div className="hidden min-[910px]:flex items-center flex-1 justify-center">
             {/* Main Navigation */}
             <div className="flex px-8 py-2 bg-gray-900/30 backdrop-blur-md rounded-full border border-white/10 shadow-xl">
               <div className="flex space-x-8 items-center justify-center">
@@ -147,7 +147,7 @@ const Navbar = () => {
           </div>
 
           {/* Contact button (Hire Me removed) - Right side */}
-          <div className="hidden md:flex items-center gap-4 ml-auto">
+          <div className="hidden min-[910px]:flex items-center gap-4 ml-auto">
             <div className="relative" ref={langMenuRef}>
               <button
                 type="button"
@@ -177,7 +177,7 @@ const Navbar = () => {
                       className={`w-full text-left px-4 py-2 text-sm transition-colors ${
                         language === option.value
                           ? "bg-blue-500/10 text-blue-300"
-                          : "text-gray-200 hover:bg-white/5"
+                          : "text-gray-200 hover:bg-white/5 hover:text-blue-400"
                       }`}
                     >
                       {option.label}
@@ -193,7 +193,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className=" min-[910px]:hidden ml-auto">
             <Button
               variant="ghost"
               size="sm"
@@ -201,7 +201,7 @@ const Navbar = () => {
               className="text-white hover:bg-gray-800"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 hover:text-red-500" />
+                <X className="w-6 h-6" />
               ) : (
                 <Menu className="w-6 h-6 " />
               )}
@@ -213,7 +213,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <motion.div
-          className="md:hidden p-4 bg-gray-900/95 border-t border-gray-800 backdrop-blur-md"
+          className="min-[910px]:hidden p-4 bg-gray-900/95 border-t border-gray-800 backdrop-blur-md"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
@@ -250,7 +250,7 @@ const Navbar = () => {
                     className={`text-left px-4 py-2 rounded-md text-sm transition-colors ${
                       language === option.value
                         ? "bg-blue-500/10 text-blue-300"
-                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        : "text-gray-300 hover:bg-gray-800 hover:text-blue-400"
                     }`}
                   >
                     {option.label}

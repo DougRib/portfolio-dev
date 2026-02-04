@@ -31,20 +31,17 @@ const Hero = () => {
           >
             <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               {t("hero.greeting")}
-              <span className="bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-cyan-500 via-red-500 to-cyan-500 text-transparent bg-clip-text">
+              <span className="text-blue-600 tracking-wider ">
                 {" "}
                 {t("hero.name")}
               </span>
             </span>
             <span className="block mt-2">
-              <span className="block bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-indigo-500 via-red-500 to-blue-500 text-transparent bg-clip-text">
+              <span className="block bg-gradient-to-r from-gray-900 via-blue-300 to-gray-900 text-transparent bg-clip-text">
                 {t("hero.role1")}
               </span>
-              <span className="block bg-gradient-to-t from-red-500 via-green-500 to-purple-500 text-transparent bg-clip-text">
+              <span className="block bg-gradient-to-r from-gray-900 via-blue-300 to-gray-900 text-transparent bg-clip-text">
                 {t("hero.role2")}
-              </span>
-              <span className="block bg-gradient-to-r from-red-100 via-cyan-700 to-purple-500 text-transparent bg-clip-text">
-                {t("hero.role3")}
               </span>
             </span>
           </motion.h1>
@@ -114,21 +111,24 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-4"
+            className="flex flex-col sm:flex-row gap-4 sm:w-auto min-[400px]:flex-row justify-center sm:justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.6 }}
           >
-            <a href="#projects" className="gradient-border-button">
-              <LayoutGrid width={20} height={20} stroke="#ffffff" />
+            <a 
+              href="#projects" 
+              className="btn-holographic"
+            >
+              <LayoutGrid width={20} height={20} stroke="#9999FF" />
               {t("hero.ctaWork")}
             </a>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <button
-                className="gradient-border-button "
+                className=" btn-neon"
                 onClick={handleResumeDownload}
               >
-                <FileChartColumn width={20} height={20} stroke="#ffffff" />
+                <FileChartColumn width={20} height={20} stroke="#6666FF" />
                 {t("hero.ctaResume")}
               </button>
             </div>
