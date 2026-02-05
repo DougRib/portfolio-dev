@@ -6,7 +6,7 @@ export const VortexBackground = () => {
       <Vortex
         backgroundColor="black"
         className="w-full h-full"
-        particleCount={800}
+        particleCount={600}
         baseHue={220}
         baseSpeed={0.3}
         rangeSpeed={1.2}
