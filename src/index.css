@@ -502,49 +502,49 @@
     border-radius: 140px;
     opacity: 0;
     animation-name: scale;
-    animation-duration: 3s;
+    animation-duration: 1.2s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
 
   .hole i:nth-child(1) {
-    animation-delay: 0.3s;
+    animation-delay: 0.15s;
   }
 
   .hole i:nth-child(2) {
-    animation-delay: 0.6s;
+    animation-delay: 0.30s;
   }
 
   .hole i:nth-child(3) {
-    animation-delay: 0.9s;
+    animation-delay: 0.45s;
   }
 
   .hole i:nth-child(4) {
-    animation-delay: 1.2s;
+    animation-delay: 0.60s;
   }
 
   .hole i:nth-child(5) {
-    animation-delay: 1.5s;
+    animation-delay: 0.75s;
   }
 
   .hole i:nth-child(6) {
-    animation-delay: 1.8s;
+    animation-delay: 0.90s;
   }
 
   .hole i:nth-child(7) {
-    animation-delay: 2.1s;
+    animation-delay: 1.05s;
   }
 
   .hole i:nth-child(8) {
-    animation-delay: 2.4s;
+    animation-delay: 1.20s;
   }
 
   .hole i:nth-child(9) {
-    animation-delay: 2.7s;
+    animation-delay: 1.35s;
   }
 
   .hole i:nth-child(10) {
-    animation-delay: 3s;
+    animation-delay: 1.5s;
   }
 
   @keyframes scale {
@@ -884,7 +884,7 @@
   .parent {
     width: 300px;
     height: 320px;
-    perspective: 1200px;
+    perspective: 1800px;
   }
 
   .card {
@@ -914,7 +914,7 @@
       rgba(255, 255, 255, 0.2) 0%,
       rgba(255, 255, 255, 0.7) 100%
     );
-    transform: translate3d(0px, 0px, 30px);
+    transform: translate3d(0px, 0px, 2px);
     border-right: 1px solid rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.6s ease-in-out;
@@ -1102,7 +1102,7 @@
   }
 
   .parent:hover .card {
-    transform: rotate3d(1, -1, 0, 25deg);
+    transform: rotate3d(1, -1, 0, 12deg);
     box-shadow:
       rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
       rgba(30, 30, 60, 0.15) 0px 25px 30px 0px;
