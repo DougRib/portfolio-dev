@@ -36,10 +36,10 @@ const Hero = () => {
               </span>
             </span>
             <span className="block mt-2">
-              <span className="block bg-gradient-to-r from-gray-900 via-blue-300 to-gray-900 text-transparent bg-clip-text">
+              <span className="block bg-gradient-to-r from-gray-600 via-blue-300 to-gray-600 text-transparent bg-clip-text">
                 {t("hero.role1")}
               </span>
-              <span className="block bg-gradient-to-r from-gray-900 via-blue-300 to-gray-900 text-transparent bg-clip-text">
+              <span className="block bg-gradient-to-r from-gray-600 via-blue-300 to-gray-600 text-transparent bg-clip-text">
                 {t("hero.role2")}
               </span>
             </span>
@@ -59,7 +59,7 @@ const Hero = () => {
           </motion.h2>
 
           <motion.p
-            className="text-md mb-10 text-gray-500"
+            className="text-md mb-10 text-gray-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
