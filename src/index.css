@@ -1252,7 +1252,7 @@
 }
 
 .btn-holographic:hover {
-  transform: translateY(-3px);
+  transform: scale(1.03);
   box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
 }
 
@@ -1314,6 +1314,7 @@
 
 .btn-neon:hover {
   border-color: rgba(96, 165, 250, 1);
+  transform: scale(1.03);
   color: #60a5fa;
   box-shadow: 
     0 0 20px rgba(96, 165, 250, 0.5),
