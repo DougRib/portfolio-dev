@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   User,
@@ -211,56 +211,60 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          className="min-[910px]:hidden p-4 bg-gray-900/95 border-t border-gray-800 backdrop-blur-md"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-        >
-          <div className="flex flex-col space-y-3">
-            {navItems.map((item) => (
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="min-[910px]:hidden p-4 bg-gray-900/95 border-t border-gray-800 backdrop-blur-md"
+            key="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="flex flex-col space-y-3">
+              {navItems.map((item) => (
+                <MobileNavLink
+                  key={item.href}
+                  href={item.href}
+                  active={activeSection === item.id}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.icon}
+                  {item.label}
+                </MobileNavLink>
+              ))}
               <MobileNavLink
-                key={item.href}
-                href={item.href}
-                active={activeSection === item.id}
+                href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {item.icon}
-                {item.label}
+                <Mail className="w-4 h-4 mr-2 text-cyan-400" />
+                {t("navbar.contact")}
               </MobileNavLink>
-            ))}
-            <MobileNavLink
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Mail className="w-4 h-4 mr-2 text-cyan-400" />
-              {t("navbar.contact")}
-            </MobileNavLink>
-            <div className="pt-2 border-t border-gray-800">
-              <div className="px-4 text-xs uppercase tracking-wider text-gray-400 mb-2">
-                {t("navbar.language")}
-              </div>
-              <div className="flex flex-col gap-2">
-                {languageOptions.map((option) => (
-                  <button
-                    key={option.value}
-                    type="button"
-                    onClick={() => handleLanguageChange(option.value)}
-                    className={`text-left px-4 py-2 rounded-md text-sm transition-colors ${
-                      language === option.value
-                        ? "bg-blue-500/10 text-blue-300"
-                        : "text-gray-300 hover:bg-gray-800 hover:text-blue-400"
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                ))}
+              <div className="pt-2 border-t border-gray-800">
+                <div className="px-4 text-xs uppercase tracking-wider text-gray-400 mb-2">
+                  {t("navbar.language")}
+                </div>
+                <div className="flex flex-col gap-2">
+                  {languageOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => handleLanguageChange(option.value)}
+                      className={`text-left px-4 py-2 rounded-md text-sm transition-colors ${
+                        language === option.value
+                          ? "bg-blue-500/10 text-blue-300"
+                          : "text-gray-300 hover:bg-gray-800 hover:text-blue-400"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
