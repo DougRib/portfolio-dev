@@ -47,8 +47,8 @@ const Navbar = () => {
 
   const navItems = [
     { id: "hero", href: "#hero", label: t("navbar.home"), icon: <House className="w-5 h-5 mr-1 text-cyan-400" /> },
-    { id: "technologies", href: "#technologies", label: t("navbar.skills"), icon: <Brain className="w-5 h-5 mr-1 text-cyan-400" /> },
     { id: "about", href: "#about", label: t("navbar.about"), icon: <User className="w-5 h-5 mr-1 text-cyan-400" /> },
+    { id: "technologies", href: "#technologies", label: t("navbar.skills"), icon: <Brain className="w-5 h-5 mr-1 text-cyan-400" /> },
     { id: "projects", href: "#projects", label: t("navbar.projects"), icon: <Code2 className="w-5 h-5 mr-1 text-cyan-400" /> },
   ];
 
@@ -114,6 +114,13 @@ const Navbar = () => {
           {/* Logo with glowing effect */}
           <a
             href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById("hero");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
             className="relative group flex items-center justify-center"
           >
             {/* Full logo glow effect */}
@@ -194,18 +201,16 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className=" min-[910px]:hidden ml-auto">
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white hover:bg-gray-800"
+              className="w-12 h-12 flex items-center justify-center rounded-md text-blue-300 bg-gray-800 hover:bg-gray-700 border border-blue-200/10 transition-colors duration-200"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className="w-6 h-6 text-red-400" />
               ) : (
-                <Menu className="w-6 h-6 " />
+                <Menu className="w-6 h-6" />
               )}
-            </Button>
+            </button>
           </div>
         </div>
       </div>
@@ -214,14 +219,14 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="min-[910px]:hidden p-4 bg-gray-900/95 border-t border-gray-800 backdrop-blur-md"
+            className="min-[910px]:hidden p-4 bg-gray-900 rounded-xl border-t border-gray-800 backdrop-blur-md"
             key="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-1">
               {navItems.map((item) => (
                 <MobileNavLink
                   key={item.href}
@@ -241,7 +246,7 @@ const Navbar = () => {
                 {t("navbar.contact")}
               </MobileNavLink>
               <div className="pt-2 border-t border-gray-800">
-                <div className="px-4 text-xs uppercase tracking-wider text-gray-400 mb-2">
+                <div className="px-4 text-xs uppercase tracking-wider text-gray-400 mb-1">
                   {t("navbar.language")}
                 </div>
                 <div className="flex flex-col gap-2">
@@ -252,7 +257,7 @@ const Navbar = () => {
                       onClick={() => handleLanguageChange(option.value)}
                       className={`text-left px-4 py-2 rounded-md text-sm transition-colors ${
                         language === option.value
-                          ? "bg-blue-500/10 text-blue-300"
+                          ? "bg-blue-500/10 text-blue-300 border-l-2 border-blue-500"
                           : "text-gray-300 hover:bg-gray-800 hover:text-blue-400"
                       }`}
                     >
@@ -278,9 +283,25 @@ const IslandNavLink = ({
   children: React.ReactNode;
   active?: boolean;
 }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // Remove o # do href e busca o elemento
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "start" 
+      });
+    }
+  };
+
   return (
     <a
       href={href}
+      onClick={handleClick}
       className={`relative px-3 py-2 transition-all duration-300 group flex items-center ${
         active ? "text-white" : "text-gray-300 hover:text-white"
       }`}
@@ -312,16 +333,40 @@ const MobileNavLink = ({
   children: React.ReactNode;
   active?: boolean;
   onClick: () => void;
-}) => (
-  <a
-    href={href}
-    onClick={onClick}
-    className={`py-2 px-4 rounded-md transition-colors flex items-center ${
-      active ? "text-white bg-gray-800" : "text-gray-300 hover:text-white hover:bg-gray-800"
-    }`}
-  >
-    {children}
-  </a>
-);
+}) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // Fecha o menu primeiro
+    onClick();
+    
+    // Remove o # do href e busca o elemento
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Pequeno delay para fechar o menu antes de scrollar
+      setTimeout(() => {
+        element.scrollIntoView({ 
+          behavior: "smooth", 
+          block: "start" 
+        });
+      }, 100);
+    }
+  };
+  return (
+    <a
+      href={href}
+      onClick={handleClick}
+      className={`py-2 px-4 rounded-md transition-colors flex items-center 
+        ${active 
+        ? "text-white bg-gray-800 border-l-2 border-blue-500" 
+        : "text-gray-300 hover:text-white hover:bg-gray-800"
+      }`}
+    >
+      {children}
+    </a>
+  )
+};
 
 export default Navbar;
