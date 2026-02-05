@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import {
   User,
   Code2,
@@ -131,6 +130,7 @@ const Navbar = () => {
               src="/logo-dr.png"
               alt="DR Logo"
               className="h-10 w-12 relative z-10"
+              title="Douglas Ribeiro"
             />
           </a>
 
@@ -154,7 +154,7 @@ const Navbar = () => {
           </div>
 
           {/* Contact button (Hire Me removed) - Right side */}
-          <div className="hidden min-[910px]:flex items-center gap-4 ml-auto">
+          <div className="hidden min-[910px]:flex items-center gap-4 ml-auto ">
             <div className="relative" ref={langMenuRef}>
               <button
                 type="button"
@@ -171,27 +171,34 @@ const Navbar = () => {
                 </span>
                 <ChevronDown className="w-4 h-4 text-blue-300" />
               </button>
-              {langMenuOpen && (
-                <div
-                  role="listbox"
-                  className="absolute right-0 mt-2 w-52 rounded-xl border border-blue-500/20 bg-gray-900/80 backdrop-blur-xl shadow-xl overflow-hidden z-50"
-                >
-                  {languageOptions.map((option) => (
-                    <button
-                      key={option.value}
-                      type="button"
-                      onClick={() => handleLanguageChange(option.value)}
-                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                        language === option.value
-                          ? "bg-blue-500/10 text-blue-300"
-                          : "text-gray-200 hover:bg-white/5 hover:text-blue-400"
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-              )}
+              <AnimatePresence>
+                {langMenuOpen && (
+                  <motion.div
+                    
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1}}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    role="listbox"
+                    className="absolute right-0 w-52 rounded-xl p-1 mt-1 border border-blue-500/20 bg-gray-900/80 backdrop-blur-xl shadow-xl overflow-hidden z-50"
+                  >
+                    {languageOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => handleLanguageChange(option.value)}
+                        className={`w-full text-left px-4 py-2 mt-1 rounded-md text-sm transition-colors ${
+                          language === option.value
+                            ? "bg-blue-500/10 text-blue-300 border-l-2 border-blue-500"
+                            : "text-gray-200 hover:bg-white/5 hover:text-blue-400"
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
             <a href="#contact" className="glow-button">
               <Mail className="w-4 h-4 mr-2" />
