@@ -72,7 +72,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       className="h-full group relative"
     >
       {/* Gradient shadow effect */}
-      <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-amber-500/60 via-sky-500/60 to-gray-500/60 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10 scale-110 group-hover:scale-100"></div>
+      <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-amber-500/60 via-sky-500/60 to-gray-500/60 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10 scale-103 group-hover:scale-100"></div>
 
       <Card className="overflow-hidden transition-all duration-300 h-full flex flex-col bg-gray-900/70 border-gray-800 rounded-xl relative project-card-hover card-shadow-effect main-project-card">
         {/* Shine effect */}
@@ -137,7 +137,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
 
         <CardContent className="flex-grow">
           <CardDescription
-            className="text-sm text-gray-400 main-project-card__description"
+            className="text-sm text-gray-300 main-project-card__description"
             dangerouslySetInnerHTML={{ __html: project.description }}
           />
 
