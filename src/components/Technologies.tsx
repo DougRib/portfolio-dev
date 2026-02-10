@@ -109,7 +109,7 @@ const Technologies = () => {
         {techGroups.map((group) => (
           <div
             key={group.id}
-            className="flex flex-col items-center h-full rounded-2xl border border-blue-500/20 bg-black/30 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.35)] p-6 hover:border-blue-400 transition-all duration-200"
+            className="flex flex-col items-center h-full rounded-2xl border border-blue-500/20 bg-gradient-to-b from-blue-900/90 to-gray-100/40 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.35)] p-6 hover:border-blue-400 transition-all duration-200"
           >
             <div className="mb-4 flex items-center gap-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-300 uppercase tracking-wider shadow-sm">
