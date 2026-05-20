@@ -82,9 +82,9 @@ const translations: Record<Language, Translations> = {
         {
           badge: "2025",
           title: "Soft Skills e Certificações",
-          description: 
+          description:
             "Desenvolvimento de habilidades interpessoais como comunicação, trabalho em equipe, resolução de problemas, raciocínio analítico, complementadas por certificações em Desenvolvimento Full Stack e Análise de Dados.",
-        }
+        },
       ],
     },
     features: {
@@ -141,6 +141,23 @@ const translations: Record<Language, Translations> = {
       items: [
         {
           id: 1,
+          title: "Landing Page institucional e comercial da NativIA",
+          description:"Landing page moderna para NativIA, mostrando seus serviços institucionais e comerciais com foco em experiência de usuário e conversão.",
+          image: "/projects-uploads/nativia.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/nativia-lp",
+        },
+        {
+          id: 2,
+          title: "Landing Page para oficina Mecânica Automotiva",
+          description:
+            "Landing page para oficina mecânica automotiva, com foco em experiência de usuário e conversão.",
+          image: "/projects-uploads/oficina-mecanica.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/car-auto-center",
+        },
+        {
+          id: 3,
           title: "Portfólio Fotográfico com Painel Admin",
           description:
             "Portfólio dinâmico em React com painel administrativo para gerenciamento de conteúdo fácil e atualizações em tempo real.",
@@ -149,7 +166,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/fotografo-portfolio",
         },
         {
-          id: 2,
+          id: 4,
           title: "Análise de Dados em Python",
           description:
             "Exploração de dados usando Python, com foco em limpeza, transformação e geração de insights iniciais. Organização de métricas usando planilhas e visualizações simples.",
@@ -158,7 +175,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/desafio_alura_data_science",
         },
         {
-          id: 3,
+          id: 5,
           title: "Projeto Healthtech",
           description:
             "Projeto contempla toda a pipeline de dados da ANS (download, validações, enriquecimento e agregação), scripts SQL para carga e análises no PostgreSQL, além da API em FastAPI e dashboard em Vue com visualizações e indicadores.",
@@ -174,7 +191,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/projeto_healthtech",
         },
         {
-          id: 4,
+          id: 6,
           title: "Portfólio Developer",
           description:
             "Landing page pessoal desenvolvida com React e Tailwind CSS para apresentar projetos, habilidades e informações de contato de forma elegante e responsiva.",
@@ -211,7 +228,13 @@ const translations: Record<Language, Translations> = {
             "Monitoramento do clima <span class='gradient-highlight'>em tempo real</span> com <span class='gradient-highlight'>API OpenWeatherMap</span> e <span class='gradient-highlight'>previsões</span>.",
           image:
             "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-          tags: ["React", "OpenWeatherMap API", "CSS", "Weather API", "Forecast"],
+          tags: [
+            "React",
+            "OpenWeatherMap API",
+            "CSS",
+            "Weather API",
+            "Forecast",
+          ],
           demoUrl: "https://weather-app-kalpsenghani.netlify.app/",
           githubUrl: "https://github.com/kalpsenghani/Weather-App",
         },
@@ -442,6 +465,24 @@ const translations: Record<Language, Translations> = {
       items: [
         {
           id: 1,
+          title: "NativIA Institutional and Commercial Landing Page",
+          description:
+            "Modern landing page for NativIA, showcasing their institutional and commercial services with a focus on user experience and conversion.",
+          image: "/projects-uploads/nativia.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/nativia-lp",
+        },
+        {
+          id: 2,
+          title: "Landing Page for Automotive Mechanic Shop",
+          description:
+            "Modern landing page for a local mechanic shop, showcasing their services and attracting potential customers.",
+          image: "/projects-uploads/oficina-mecanica.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/car-auto-center",
+        },
+        {
+          id: 3,
           title: "Photography Portfolio with Admin Panel",
           description:
             "Dynamic React portfolio with an admin panel for easy content management and real-time updates.",
@@ -450,7 +491,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/fotografo-portfolio",
         },
         {
-          id: 2,
+          id: 4,
           title: "Python Data Analysis",
           description:
             "Data exploration using Python, focused on cleaning, transformation, and initial insights. Metrics organized with spreadsheets and simple visualizations.",
@@ -459,7 +500,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/desafio_alura_data_science",
         },
         {
-          id: 3,
+          id: 5,
           title: "Healthtech Project",
           description:
             "End-to-end ANS data pipeline (download, validation, enrichment, aggregation), SQL scripts for loading and analysis in PostgreSQL, plus a FastAPI API and Vue dashboard with visualizations and indicators.",
@@ -475,7 +516,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/projeto_healthtech",
         },
         {
-          id: 4,
+          id: 6,
           title: "Developer Portfolio",
           description:
             "Personal landing page built with React and Tailwind CSS to showcase projects, skills, and contact information in an elegant, responsive layout.",
@@ -485,6 +526,7 @@ const translations: Record<Language, Translations> = {
         },
       ],
     },
+
     microProjects: {
       items: [
         {
@@ -512,7 +554,13 @@ const translations: Record<Language, Translations> = {
             "Real-time <span class='gradient-highlight'>weather tracking</span> with <span class='gradient-highlight'>OpenWeatherMap API</span> and <span class='gradient-highlight'>forecast predictions</span>.",
           image:
             "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-          tags: ["React", "OpenWeatherMap API", "CSS", "Weather API", "Forecast"],
+          tags: [
+            "React",
+            "OpenWeatherMap API",
+            "CSS",
+            "Weather API",
+            "Forecast",
+          ],
           demoUrl: "https://weather-app-kalpsenghani.netlify.app/",
           githubUrl: "https://github.com/kalpsenghani/Weather-App",
         },
@@ -725,7 +773,8 @@ const translations: Record<Language, Translations> = {
     },
     technologies: {
       title: "Tecnologías con las que trabajo",
-      subtitle: "Herramientas y frameworks de vanguardia para construir el futuro",
+      subtitle:
+        "Herramientas y frameworks de vanguardia para construir el futuro",
       groups: {
         languages: "Lenguajes",
         frontend: "Frontend",
@@ -742,6 +791,24 @@ const translations: Record<Language, Translations> = {
       items: [
         {
           id: 1,
+          title: "Landing Page institucional y comercial de NativIA",
+          description:
+            "Landing page moderna para NativIA, mostrando sus servicios institucionales y comerciales con enfoque en experiencia de usuario y conversión.",
+          image: "/projects-uploads/nativia.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/nativia-lp",
+        },
+        {
+          id: 2,
+          title: "Landing Page para taller Mecánica Automotriz",
+          description:
+            "Landing page moderna para un taller mecánico local, mostrando sus servicios y atrayendo a potenciales clientes.",
+          image: "/projects-uploads/oficina-mecanica.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/car-auto-center",
+        },
+        {
+          id: 3,
           title: "Portafolio fotográfico con panel admin",
           description:
             "Portafolio dinámico en React con panel administrativo para gestión de contenido y actualizaciones en tiempo real.",
@@ -750,7 +817,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/fotografo-portfolio",
         },
         {
-          id: 2,
+          id: 4,
           title: "Análisis de datos en Python",
           description:
             "Exploración de datos con Python, enfocada en limpieza, transformación y generación de insights iniciales. Organización de métricas con hojas de cálculo y visualizaciones simples.",
@@ -759,7 +826,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/desafio_alura_data_science",
         },
         {
-          id: 3,
+          id: 5,
           title: "Proyecto Healthtech",
           description:
             "Pipeline completa de datos de la ANS (descarga, validaciones, enriquecimiento y agregación), scripts SQL para carga y análisis en PostgreSQL, además de API en FastAPI y dashboard en Vue con visualizaciones e indicadores.",
@@ -775,7 +842,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/projeto_healthtech",
         },
         {
-          id: 4,
+          id: 6,
           title: "Portafolio Developer",
           description:
             "Landing page personal desarrollada con React y Tailwind CSS para presentar proyectos, habilidades e información de contacto de forma elegante y responsiva.",
@@ -972,6 +1039,24 @@ const translations: Record<Language, Translations> = {
       items: [
         {
           id: 1,
+          title: "Landing Page institucional e comercial da NativIA",
+          description:
+            "Landing page moderna para a NativIA, apresentando os seus serviços institucionais e comerciais com foco na experiência do utilizador e conversão.",
+          image: "/projects-uploads/nativia.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/nativia-lp",
+        },
+        {
+          id: 2,
+          title: "Landing Page para oficina de Mecânica Automotiva",
+          description:
+            "Landing page moderna para uma oficina mecânica local, apresentando os seus serviços e atraindo potenciais clientes.",
+          image: "/projects-uploads/oficina-mecanica.png",
+          tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+          githubUrl: "https://github.com/DougRib/car-auto-center",
+        },
+        {
+          id: 3,
           title: "Portefólio fotográfico com painel admin",
           description:
             "Portefólio dinâmico em React com painel administrativo para gestão de conteúdo e atualizações em tempo real.",
@@ -980,7 +1065,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/fotografo-portfolio",
         },
         {
-          id: 2,
+          id: 4,
           title: "Análise de dados em Python",
           description:
             "Exploração de dados com Python, com foco em limpeza, transformação e geração de insights iniciais. Organização de métricas com folhas de cálculo e visualizações simples.",
@@ -989,7 +1074,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/desafio_alura_data_science",
         },
         {
-          id: 3,
+          id: 5,
           title: "Projeto Healthtech",
           description:
             "Pipeline completa de dados da ANS (download, validações, enriquecimento e agregação), scripts SQL para carga e análises no PostgreSQL, além da API em FastAPI e dashboard em Vue com visualizações e indicadores.",
@@ -1005,7 +1090,7 @@ const translations: Record<Language, Translations> = {
           githubUrl: "https://github.com/DougRib/projeto_healthtech",
         },
         {
-          id: 4,
+          id: 6,
           title: "Portefólio Developer",
           description:
             "Landing page pessoal desenvolvida com React e Tailwind CSS para apresentar projetos, competências e informação de contacto de forma elegante e responsiva.",
@@ -1079,11 +1164,11 @@ type LanguageContextValue = {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (path: string) => string;
-  tArray: <T,>(path: string) => T[];
+  tArray: <T>(path: string) => T[];
 };
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(
-  undefined
+  undefined,
 );
 
 const getNestedValue = (obj: Record<string, unknown>, path: string) => {
@@ -1125,7 +1210,7 @@ export const LanguageProvider = ({
     const t = (path: string) => {
       const result = getNestedValue(
         translations[language] as Record<string, unknown>,
-        path
+        path,
       );
       return typeof result === "string" ? result : "";
     };
@@ -1133,7 +1218,7 @@ export const LanguageProvider = ({
     const tArray = <T,>(path: string): T[] => {
       const result = getNestedValue(
         translations[language] as Record<string, unknown>,
-        path
+        path,
       );
       return Array.isArray(result) ? (result as T[]) : [];
     };
