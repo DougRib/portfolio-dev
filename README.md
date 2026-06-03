@@ -44,7 +44,7 @@ A modern, responsive portfolio website showcasing professional experience, proje
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/kalpsenghani/portfolio.git
+   git clone https://github.com/DougRib/portfolio-dev.git
    ```
 
 2. Navigate to the project directory:
@@ -117,9 +117,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 For any inquiries or suggestions, please reach out through the contact form on the portfolio website.
-
----
-
-<div align="center">
-Made with ❤️ by Kalp Senghani
-</div>
